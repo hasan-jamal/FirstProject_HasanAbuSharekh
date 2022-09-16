@@ -26,12 +26,13 @@ namespace FirstProject.Web.Controllers
         [HttpGet]
         public IActionResult GetCustomer()
         {
+            _db.IgonreFilter = true;
             var AllResturant = _db.Customers.ToList();
             return Ok(AllResturant);
         }
 
         // GET api/<CustomerController>/5
-        [HttpGet("{CustomerId:int}", Name = "GetCustomer")]
+        [HttpGet("{customerId:int}", Name = "GetCustomer")]
         public IActionResult GetCustomer(int customerId)
         {
             var CustomerId  = _db.Customers.FirstOrDefault(x => x.Id == customerId);

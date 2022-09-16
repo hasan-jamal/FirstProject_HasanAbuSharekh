@@ -8,7 +8,8 @@ namespace FirstProject.Web.Model
 {
     public partial class restaurantdbContext : DbContext
     {
-        public bool IgonreFilter { get; set; }
+        public bool IgonreFilter { get; set; } = true;
+
         public restaurantdbContext()
         {
         }
@@ -23,8 +24,6 @@ namespace FirstProject.Web.Model
         public virtual DbSet<RestaurantMenu> RestaurantMenus { get; set; }
         public virtual DbSet<RestaurantMenuCustomer> RestaurantMenuCustomers { get; set; }
         public virtual DbSet<OrdersView> OrdersViews { get; set; }
-
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -34,7 +33,7 @@ namespace FirstProject.Web.Model
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
+         {
             modelBuilder.Entity<OrdersView>(entity =>
             {
                 entity.ToTable("OrdersView");
@@ -47,7 +46,6 @@ namespace FirstProject.Web.Model
                 entity.Property(e => e.MostPurchasedCustomer).HasColumnType("varchar(255)");
 
             });
-
 
             modelBuilder.Entity<Customer>(entity =>
             {
@@ -109,9 +107,11 @@ namespace FirstProject.Web.Model
                     .HasForeignKey(d => d.RestaurantMenuId)
                     .HasConstraintName("FK_RestaurantMenu_Customer_RestaurantMenu");
             });
+
             modelBuilder.Entity<Customer>().HasQueryFilter(a => !a.Archived || IgonreFilter);
             modelBuilder.Entity<Restaurant>().HasQueryFilter(a => !a.Archived || IgonreFilter);
             modelBuilder.Entity<RestaurantMenu>().HasQueryFilter(a => !a.Archived || IgonreFilter);
+
 
 
             OnModelCreatingPartial(modelBuilder);

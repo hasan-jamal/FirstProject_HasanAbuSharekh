@@ -6,8 +6,6 @@ using FirstProject.Web.Model;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace FirstProject.Web.Controllers
 {
     [Route("api/[controller]")]
@@ -25,6 +23,7 @@ namespace FirstProject.Web.Controllers
         [HttpGet]
         public IActionResult GetRestaurantMenu()
         {
+     
             var AllResturant = _db.RestaurantMenus.ToList();
             return Ok(AllResturant);
         }
@@ -47,6 +46,7 @@ namespace FirstProject.Web.Controllers
             {
                 return BadRequest(ModelState);
             }
+
             capitalize.FirstCharToUpper(createRestaurantMenusDto.MealName);
             var restaurantMenuObj = _mapper.Map<RestaurantMenu>(createRestaurantMenusDto);
             _db.RestaurantMenus.Add(restaurantMenuObj);
@@ -78,6 +78,14 @@ namespace FirstProject.Web.Controllers
             _db.SaveChanges();
             return Ok();
         }
-       
+        [HttpGet("resturantMenuId")]
+        public bool isAvailable(int resturantMenuId)
+        {
+            var resturantObj = _db.RestaurantMenus.FirstOrDefault(x => x.Id == resturantMenuId);
+            resturantObj.Id = resturantMenuId;
+            if (resturantMenuId > 0) return true;
+            return false;
+        }
+
     }
 }

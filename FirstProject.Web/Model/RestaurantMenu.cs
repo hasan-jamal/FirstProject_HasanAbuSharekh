@@ -18,7 +18,11 @@ namespace FirstProject.Web.Model
         public double? PriceInUsd { get; set; }
         public int? Quantity { get; set; }
          public int? RestaurantId { get; set; }
-
+        //public double? PriceInUsd
+        //{
+        //    get { return PriceInNis / 3.5; }
+        //    set { PriceInUsd = value; }
+        //}
         public virtual Restaurant Restaurant { get; set; }
         public virtual ICollection<RestaurantMenuCustomer> RestaurantMenuCustomers { get; set; }
     }
