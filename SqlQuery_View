@@ -1,18 +1,22 @@
-CREATE VIEW OrdersView
-AS
-SELECT 
-Restaurant.Name  as RestaurantName,
-Count(RestaurantMenu_Customer.CustomerId)as NumberOfOrderedCustomer ,
-sum(RestaurantMenu.PriceInNis) as PriceInNis,
-sum(RestaurantMenu.PriceInNis) / 3.5  as ProfitInUsd,
-RestaurantMenu.MealName as TheBestSellingMeal,
-Customer.firstName as MostPurchasedCustomer
-
-FROM RestaurantMenu_Customer 
-LEFT JOIN  Customer  on RestaurantMenu_Customer.CustomerId = Customer.Id
-LEFT Join RestaurantMenu  on RestaurantMenu_Customer.RestaurantMenuId = RestaurantMenu.Id
-LEFT join Restaurant on Restaurant.Id = RestaurantMenu.RestaurantId 
-
-group by Restaurant.Name ,
-RestaurantMenu.MealName ,
-Customer.firstName
+CREATE VIEW OrdersView AS SELECT
+        Restaurant.Name  as RestaurantName,
+        Count(RestaurantMenu_Customer.CustomerId)as NumberOfOrderedCustomer ,
+        sum(RestaurantMenu.PriceInNis) as PriceInNis,
+        sum(RestaurantMenu.PriceInNis) / 3.5  as ProfitInUsd,
+        RestaurantMenu.MealName as TheBestSellingMeal,
+        Customer.firstName as MostPurchasedCustomer  
+    FROM
+        RestaurantMenu_Customer  
+    LEFT JOIN
+        Customer  
+            on RestaurantMenu_Customer.CustomerId = Customer.Id 
+    LEFT Join
+        RestaurantMenu  
+            on RestaurantMenu_Customer.RestaurantMenuId = RestaurantMenu.Id 
+    LEFT join
+        Restaurant 
+            on Restaurant.Id = RestaurantMenu.RestaurantId   
+    group by
+        Restaurant.Name ,
+        RestaurantMenu.MealName ,
+        Customer.firstName
