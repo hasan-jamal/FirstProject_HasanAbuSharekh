@@ -21,6 +21,7 @@ namespace FirstProject.Web.Controllers
             _db = db;
             _mapper = mapper;
         }
+
         // GET: api/<RestaurantController>
         [HttpGet]
         public IActionResult GetRestaurant()
