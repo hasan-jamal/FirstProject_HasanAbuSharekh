@@ -28,6 +28,9 @@ namespace FirstProject.Web.Controllers
         {
             // testc 
             _db.IgonreFilter = true;
+
+            //test 
+            ///coment 
             var AllResturant = _db.Restaurants.ToList();
             return Ok(AllResturant);
         }
