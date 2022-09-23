@@ -26,6 +26,10 @@ namespace FirstProject.Web.Controllers
         [HttpGet]
         public IActionResult GetCustomer()
         {
+
+
+
+            /// hasan here 
             _db.IgonreFilter = true;
             var AllResturant = _db.Customers.ToList();
             return Ok(AllResturant);
