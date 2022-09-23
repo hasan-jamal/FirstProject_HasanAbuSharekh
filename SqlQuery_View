@@ -1,3 +1,5 @@
+
+
 CREATE VIEW OrdersView AS SELECT
         Restaurant.Name  as RestaurantName,
         Count(RestaurantMenu_Customer.CustomerId)as NumberOfOrderedCustomer ,
@@ -20,3 +22,6 @@ CREATE VIEW OrdersView AS SELECT
         Restaurant.Name ,
         RestaurantMenu.MealName ,
         Customer.firstName
+        
+        
+        
