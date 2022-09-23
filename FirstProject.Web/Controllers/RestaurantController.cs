@@ -26,6 +26,7 @@ namespace FirstProject.Web.Controllers
         [HttpGet]
         public IActionResult GetRestaurant()
         {
+            // testc 
             _db.IgonreFilter = true;
             var AllResturant = _db.Restaurants.ToList();
             return Ok(AllResturant);
