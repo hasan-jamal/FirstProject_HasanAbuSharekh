@@ -27,6 +27,7 @@ namespace FirstProject.Web.Controllers
         public IActionResult GetRestaurant()
         {
             // testc 
+            //test baraa
             _db.IgonreFilter = true;
 
             //test 
