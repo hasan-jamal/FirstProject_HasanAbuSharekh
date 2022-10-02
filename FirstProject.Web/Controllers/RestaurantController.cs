@@ -27,7 +27,11 @@ namespace FirstProject.Web.Controllers
         public IActionResult GetRestaurant()
         {
             // testc 
+            //test baraa
             _db.IgonreFilter = true;
+
+            //test 
+            ///coment 
             var AllResturant = _db.Restaurants.ToList();
             return Ok(AllResturant);
         }
