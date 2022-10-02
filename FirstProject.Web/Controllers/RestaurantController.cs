@@ -26,12 +26,7 @@ namespace FirstProject.Web.Controllers
         [HttpGet]
         public IActionResult GetRestaurant()
         {
-            // testc 
-            //test baraa
             _db.IgonreFilter = true;
-
-            //test 
-            ///coment 
             var AllResturant = _db.Restaurants.ToList();
             return Ok(AllResturant);
         }
@@ -40,6 +35,7 @@ namespace FirstProject.Web.Controllers
         [HttpGet("{RestaurantId:int}", Name = "GetRestaurant")]
         public IActionResult GetRestaurant(int RestaurantId)
         {
+            _db.IgonreFilter = true;
             var restaurantId  = _db.Restaurants.FirstOrDefault(x => x.Id == RestaurantId);
             if (restaurantId == null) return NotFound();
             return Ok(restaurantId);

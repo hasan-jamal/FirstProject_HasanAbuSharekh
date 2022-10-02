@@ -14,6 +14,7 @@ namespace FirstProject.Web.Controllers
     {
         private readonly IMapper _mapper;
         private readonly restaurantdbContext _db;
+
         public RestaurantMenuController(IMapper mapper, restaurantdbContext db)
         {
             _mapper = mapper;
@@ -23,7 +24,7 @@ namespace FirstProject.Web.Controllers
         [HttpGet]
         public IActionResult GetRestaurantMenu()
         {
-     
+            _db.IgonreFilter = true;
             var AllResturant = _db.RestaurantMenus.ToList();
             return Ok(AllResturant);
         }
@@ -32,6 +33,7 @@ namespace FirstProject.Web.Controllers
         [HttpGet("{RestaurantMenuId:int}", Name = "GetRestaurantMenu")]
         public IActionResult GetRestaurantMenu(int RestaurantMenuId)
         {
+            _db.IgonreFilter = true;
             var restaurantId = _db.RestaurantMenus.FirstOrDefault(x => x.Id == RestaurantMenuId);
             if (restaurantId == null) return NotFound();
             return Ok(restaurantId);
