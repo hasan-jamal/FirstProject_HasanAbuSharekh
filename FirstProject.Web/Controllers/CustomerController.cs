@@ -7,7 +7,6 @@ using FirstProject.Web.Model;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace FirstProject.Web.Controllers
 {
@@ -26,10 +25,6 @@ namespace FirstProject.Web.Controllers
         [HttpGet]
         public IActionResult GetCustomer()
         {
-
-
-
-            /// hasan here 
             _db.IgonreFilter = true;
             var AllResturant = _db.Customers.ToList();
             return Ok(AllResturant);
@@ -39,6 +34,7 @@ namespace FirstProject.Web.Controllers
         [HttpGet("{customerId:int}", Name = "GetCustomer")]
         public IActionResult GetCustomer(int customerId)
         {
+            _db.IgonreFilter = true;
             var CustomerId  = _db.Customers.FirstOrDefault(x => x.Id == customerId);
             if (CustomerId == null) return NotFound();
             return Ok(CustomerId);
@@ -48,6 +44,7 @@ namespace FirstProject.Web.Controllers
         [HttpPost]
         public IActionResult CreateCustomer([FromBody] CreateCustomersDto createCustomerDto)
         {
+            _db.IgonreFilter = true;
             if (createCustomerDto == null) return BadRequest(ModelState);
             if (!ModelState.IsValid)
             {

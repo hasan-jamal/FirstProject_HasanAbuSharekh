@@ -8,7 +8,7 @@ namespace FirstProject.Web.Model
 {
     public partial class restaurantdbContext : DbContext
     {
-        public bool IgonreFilter { get; set; } = true;
+        public bool IgonreFilter { get; set; }
 
         public restaurantdbContext()
         {
